@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AsValPF — Gaming Content Creator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== LOGO RAIN ===== -->
+  <div id="logoRain" aria-hidden="true"></div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-inner" id="cursorInner"></div>
+
+  <!-- ===== FILM GRAIN OVERLAY ===== -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ===== CINEMATIC LOADER ===== -->
+  <div class="loader" id="loader">
+    <div class="loader-bars">
+      <div class="lb lb1"></div>
+      <div class="lb lb2"></div>
+    </div>
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="ll-bracket">[</span>
+        <span class="ll-as">As</span><span class="ll-val">Val</span><span class="ll-pf">PF</span>
+        <span class="ll-bracket">]</span>
+      </div>
+      <div class="loader-progress">
+        <div class="lp-fill" id="lpFill"></div>
+      </div>
+      <span class="loader-pct" id="loaderPct">0%</span>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <img src="Logo/IMG_7020.png" alt="AsValPF Logo" class="logo-img" />
+        <span class="logo-as">As</span><span class="logo-val">Val</span><span class="logo-pf">PF</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"    class="nav-link active" data-text="Accueil">Accueil</a></li>
+        <li><a href="#videos"  class="nav-link"        data-text="Vidéos">Vidéos</a></li>
+        <li><a href="#about"   class="nav-link"        data-text="À propos">À propos</a></li>
+        <li><a href="#contact" class="nav-link"        data-text="Contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://www.twitch.tv/asvalpf" class="social-pill tw" title="Twitch" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.6 6H13v4.5h-1.4V6zm3.7 0H17v4.5h-1.4V6zM2.2 0L0 5v17h6v2h3.4l2-2H15l5-5V0H2.2zm16.3 15.5l-3.4 3.4H11l-2 2H7v-2H2.6V5.8L4 2h14.5v13.5z"/></svg>
+          Twitch
+        </a>
+        <a href="https://discord.gg/aCDufuJCu" class="social-pill dc" title="Discord" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.3 19.3 0 0 0 15.4 3a13 13 0 0 0-.6 1.2 17.9 17.9 0 0 0-5.5 0A12.3 12.3 0 0 0 8.7 3a19.4 19.4 0 0 0-4.9 1.4C1.2 8.2.5 11.9 1 15.6a19.5 19.5 0 0 0 5.9 3 14 14 0 0 0 1.2-2 12.7 12.7 0 0 1-1.9-.9l.5-.3a14 14 0 0 0 12 0l.4.3a12.6 12.6 0 0 1-1.9.9 14 14 0 0 0 1.2 2 19.4 19.4 0 0 0 5.9-3c.5-4.3-.8-8-3-11.2zM8.7 13.4c-1.2 0-2.1-1-2.1-2.3s.9-2.3 2.1-2.3 2.1 1 2.1 2.3-.9 2.3-2.1 2.3zm6.6 0c-1.2 0-2.1-1-2.1-2.3s.9-2.3 2.1-2.3 2.1 1 2.1 2.3-.9 2.3-2.1 2.3z"/></svg>
+          Discord
+        </a>
+        <a href="https://www.tiktok.com/@asvalpf" class="social-pill tt" title="TikTok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 3a4.9 4.9 0 0 1-4.9-4.9h-3.3v14.1a2.3 2.3 0 1 1-1.6-2.2V6.7a5.6 5.6 0 1 0 4.9 5.5V8.5a8.2 8.2 0 0 0 4.9 1.6V6.8A4.9 4.9 0 0 1 19.6 3z"/></svg>
+          TikTok
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO — CINEMATIC PARALLAX ===== -->
+  <section class="hero" id="home">
+
+    <!-- Image de fond cinématique -->
+    <div class="hero-img-bg" id="heroImgBg"></div>
+    <div class="hero-img-overlay"></div>
+
+    <!-- Depth Layer 0 — deepest background -->
+    <div class="hero-layer hero-layer-bg" id="layerBg">
+      <div class="bg-gradient-sweep"></div>
+      <div class="bg-lines">
+        <div class="bg-hline"></div><div class="bg-hline"></div><div class="bg-hline"></div>
+        <div class="bg-hline"></div><div class="bg-hline"></div>
+      </div>
+    </div>
+
+    <!-- Depth Layer 1 — mid elements -->
+    <div class="hero-layer hero-layer-mid" id="layerMid">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid3d"></div>
+    </div>
+
+    <!-- Depth Layer 2 — floating UI fragments (foreground depth) -->
+    <div class="hero-layer hero-layer-fg" id="layerFg">
+      <div class="frag frag-1">
+        <span class="frag-label">// KILLS TODAY</span>
+        <span class="frag-val">247</span>
+        <div class="frag-bar"><div class="frag-fill" style="width:78%"></div></div>
+      </div>
+      <div class="frag frag-2">
+        <span class="frag-label">// WIN RATE</span>
+        <span class="frag-val">68<small>%</small></span>
+      </div>
+      <div class="frag frag-3">
+        <span class="frag-dot"></span>
+        <span>LIVE NOW</span>
+      </div>
+    </div>
+
+    <!-- Hero main content -->
+    <div class="hero-content" id="heroContent">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">GAMING CONTENT CREATOR</span>
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ht-row ht-row1">
+          <span class="ht-char" style="--i:0">A</span><span class="ht-char" style="--i:1">s</span><span class="ht-char" style="--i:2">V</span><span class="ht-char" style="--i:3">a</span><span class="ht-char" style="--i:4">l</span>
+        </span>
+        <span class="ht-row ht-row2">
+          <span class="ht-char ht-pf" style="--i:5">P</span><span class="ht-char ht-pf" style="--i:6">F</span>
+        </span>
+      </h1>
+
+      <p class="hero-sub reveal-up" style="--rd:0.6s">
+        Contenu gaming, highlights épiques & moments unforgettables.<br/>
+        Vis le game avec moi.
+      </p>
+
+      <div class="hero-cta reveal-up" style="--rd:0.8s">
+        <a href="#videos" class="cta-primary magnetic">
+          <span class="cta-bg"></span>
+          <span class="cta-text">Voir les Vidéos</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#about" class="cta-ghost magnetic">À propos</a>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-cue" id="scrollCue">
+      <div class="sc-mouse"><div class="sc-wheel"></div></div>
+      <span>SCROLL</span>
+    </div>
+
+    <!-- Cinematic letterbox bars -->
+    <div class="letterbox lb-top"></div>
+    <div class="letterbox lb-bottom"></div>
+  </section>
+
+  <!-- ===== REEL TICKER ===== -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>GAMING</span><span class="tk-dot">✦</span>
+      <span>HIGHLIGHTS</span><span class="tk-dot">✦</span>
+      <span>RANKED</span><span class="tk-dot">✦</span>
+      <span>ASVALFP</span><span class="tk-dot">✦</span>
+      <span>CLUTCH</span><span class="tk-dot">✦</span>
+      <span>LIVE</span><span class="tk-dot">✦</span>
+      <span>GAMING</span><span class="tk-dot">✦</span>
+      <span>HIGHLIGHTS</span><span class="tk-dot">✦</span>
+      <span>RANKED</span><span class="tk-dot">✦</span>
+      <span>ASVALFP</span><span class="tk-dot">✦</span>
+      <span>CLUTCH</span><span class="tk-dot">✦</span>
+      <span>LIVE</span><span class="tk-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ===== VIDEOS SECTION ===== -->
+  <section class="videos-section" id="videos">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="sh-line reveal-line"></div>
+        <div class="sh-text">
+          <span class="section-tag reveal-up" style="--rd:0s">// 01 — CONTENU</span>
+          <h2 class="section-title">
+            <span class="st-word reveal-clip" style="--rd:0.1s">Mes</span>
+            <span class="st-word highlight reveal-clip" style="--rd:0.2s">Vidéos</span>
+          </h2>
+        </div>
+        <div class="sh-line reveal-line" style="--rd:0.3s"></div>
+      </div>
+
+      <div class="video-filters reveal-up" style="--rd:0.2s">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="highlights">Highlights</button>
+        <button class="filter-btn" data-filter="gameplay">Gameplay</button>
+        <button class="filter-btn" data-filter="live">Live Replays</button>
+      </div>
+
+      <div class="video-grid" id="videoGrid"></div>
+
+      <div class="load-more-wrap reveal-up" style="--rd:0.3s">
+        <a href="#" class="cta-ghost magnetic">Toutes les vidéos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRANSITION 1 : après Vidéos ===== -->
+  <div class="img-transition" style="--t-img:url(Image/6.jpg)">
+    <div class="it-bg"></div>
+    <div class="it-overlay"></div>
+    <div class="it-bars"><span class="it-bar it-bar-l"></span><span class="it-bar it-bar-r"></span></div>
+  </div>
+
+  <!-- ===== CINEMATIC BANNER ===== -->
+  <section class="cin-banner">
+    <div class="cin-banner-bg" id="cinBannerBg"></div>
+    <div class="cin-banner-overlay"></div>
+    <div class="cin-banner-bars">
+      <div class="cbb cbb-top"></div>
+      <div class="cbb cbb-bottom"></div>
+    </div>
+    <div class="cin-banner-content">
+      <span class="cbc-tag reveal-up" style="--rd:0s">// ARC RAIDERS</span>
+      <h2 class="cbc-title reveal-clip" style="--rd:0.15s">Vis le jeu.<br/>Partage la victoire.</h2>
+      <a href="https://www.twitch.tv/asvalpf" class="cta-ghost magnetic reveal-up" style="--rd:0.3s" target="_blank" rel="noopener noreferrer">
+        Rejoindre le Live →
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== TRANSITION 2 : après Banner ===== -->
+  <div class="img-transition" style="--t-img:url(Image/5.jpg)">
+    <div class="it-bg"></div>
+    <div class="it-overlay"></div>
+    <div class="it-bars"><span class="it-bar it-bar-l"></span><span class="it-bar it-bar-r"></span></div>
+  </div>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="about-section" id="about">
+    <div class="about-parallax-bg" id="aboutBg"></div>
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-visual reveal-left">
+          <div class="av-frame">
+            <div class="av-corner av-tl"></div>
+            <div class="av-corner av-tr"></div>
+            <div class="av-corner av-bl"></div>
+            <div class="av-corner av-br"></div>
+            <div class="av-inner">
+              <img src="Logo/IMG_7020.png" alt="AsValPF Logo" class="av-logo" />
+              <div class="av-scan"></div>
+            </div>
+            <div class="av-glow-ring"></div>
+          </div>
+          <div class="av-status">
+            <span class="avs-dot"></span>
+            <span>EN LIGNE</span>
+          </div>
+          <div class="av-stats-card">
+            <div class="avsc-row">
+              <span class="avsc-icon">🎮</span>
+              <div><span class="avsc-l">Jeux favoris</span><span class="avsc-v">FPS / Battle Royale</span></div>
+            </div>
+            <div class="avsc-row">
+              <span class="avsc-icon">📡</span>
+              <div><span class="avsc-l">Streams</span><span class="avsc-v">Mer · Ven · Sam · Dim</span></div>
+            </div>
+            <div class="avsc-row">
+              <span class="avsc-icon">🏆</span>
+              <div><span class="avsc-l">Rang actuel</span><span class="avsc-v">Diamant III</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <span class="section-tag reveal-up" style="--rd:0s">// 02 — À PROPOS</span>
+          <h2 class="section-title" style="margin-bottom:1.5rem">
+            <span class="reveal-clip" style="--rd:0.1s">Qui est</span>
+            <span class="reveal-clip highlight" style="--rd:0.2s">AsValPF ?</span>
+          </h2>
+          <p class="about-desc reveal-up" style="--rd:0.3s">
+            Salut ! Moi c'est <strong>AsValPF</strong>, passionné de gaming depuis toujours.
+            Je crée du contenu autour de mes aventures dans les jeux compétitifs —
+            highlights, gameplays complets, et replays de streams.
+          </p>
+          <p class="about-desc reveal-up" style="--rd:0.4s">
+            Mon objectif ? Partager ma passion, faire grandir la communauté, et vivre
+            les meilleurs moments ensemble. Que tu sois un pro ou un débutant, t'as ta place ici.
+          </p>
+          <div class="skill-list reveal-up" style="--rd:0.5s">
+            <div class="skill-item">
+              <div class="si-header"><span>Aim & Précision</span><span>85%</span></div>
+              <div class="si-track"><div class="si-fill" data-w="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="si-header"><span>Game Sense</span><span>90%</span></div>
+              <div class="si-track"><div class="si-fill" data-w="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="si-header"><span>Clutch Factor</span><span>78%</span></div>
+              <div class="si-track"><div class="si-fill" data-w="78"></div></div>
+            </div>
+          </div>
+          <a href="#contact" class="cta-primary magnetic reveal-up" style="--rd:0.6s;margin-top:2.5rem;display:inline-flex">
+            <span class="cta-bg"></span>
+            <span class="cta-text">Me contacter</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRANSITION 3 : après About ===== -->
+  <div class="img-transition" style="--t-img:url(Image/8.jpg)">
+    <div class="it-bg"></div>
+    <div class="it-overlay"></div>
+    <div class="it-bars"><span class="it-bar it-bar-l"></span><span class="it-bar it-bar-r"></span></div>
+  </div>
+
+  <!-- ===== CONTACT / SOCIALS ===== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="sh-line reveal-line"></div>
+        <div class="sh-text">
+          <span class="section-tag reveal-up" style="--rd:0s">// 03 — REJOINS-MOI</span>
+          <h2 class="section-title">
+            <span class="reveal-clip" style="--rd:0.1s">La</span>
+            <span class="highlight reveal-clip" style="--rd:0.2s">Communauté</span>
+          </h2>
+        </div>
+        <div class="sh-line reveal-line" style="--rd:0.3s"></div>
+      </div>
+
+      <div class="social-grid">
+        <a href="https://www.twitch.tv/asvalpf" class="sg-card sg-tw reveal-up" style="--rd:0s" target="_blank" rel="noopener noreferrer">
+          <div class="sgc-bg"></div>
+          <div class="sgc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.6 6H13v4.5h-1.4V6zm3.7 0H17v4.5h-1.4V6zM2.2 0L0 5v17h6v2h3.4l2-2H15l5-5V0H2.2zm16.3 15.5l-3.4 3.4H11l-2 2H7v-2H2.6V5.8L4 2h14.5v13.5z"/></svg>
+          </div>
+          <h3>Twitch</h3>
+          <p>@asvalpf</p>
+          <div class="tt-stats tw-stats">
+            <div class="tt-stat">
+              <span class="tt-num">49</span>
+              <span class="tt-label">Followers</span>
+            </div>
+          </div>
+          <span class="sgc-arrow">↗</span>
+        </a>
+
+        <a href="https://discord.gg/aCDufuJCu" class="sg-card sg-dc reveal-up" style="--rd:0.1s" target="_blank" rel="noopener noreferrer">
+          <div class="sgc-bg"></div>
+          <div class="sgc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.3 19.3 0 0 0 15.4 3a13 13 0 0 0-.6 1.2 17.9 17.9 0 0 0-5.5 0A12.3 12.3 0 0 0 8.7 3a19.4 19.4 0 0 0-4.9 1.4C1.2 8.2.5 11.9 1 15.6a19.5 19.5 0 0 0 5.9 3 14 14 0 0 0 1.2-2 12.7 12.7 0 0 1-1.9-.9l.5-.3a14 14 0 0 0 12 0l.4.3a12.6 12.6 0 0 1-1.9.9 14 14 0 0 0 1.2 2 19.4 19.4 0 0 0 5.9-3c.5-4.3-.8-8-3-11.2zM8.7 13.4c-1.2 0-2.1-1-2.1-2.3s.9-2.3 2.1-2.3 2.1 1 2.1 2.3-.9 2.3-2.1 2.3zm6.6 0c-1.2 0-2.1-1-2.1-2.3s.9-2.3 2.1-2.3 2.1 1 2.1 2.3-.9 2.3-2.1 2.3z"/></svg>
+          </div>
+          <h3>Discord</h3>
+          <p>La communauté AsValPF</p>
+          <span class="sgc-arrow">↗</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@asvalpf" class="sg-card sg-tt reveal-up" style="--rd:0.2s" target="_blank" rel="noopener noreferrer">
+          <div class="sgc-bg"></div>
+          <div class="sgc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 3a4.9 4.9 0 0 1-4.9-4.9h-3.3v14.1a2.3 2.3 0 1 1-1.6-2.2V6.7a5.6 5.6 0 1 0 4.9 5.5V8.5a8.2 8.2 0 0 0 4.9 1.6V6.8A4.9 4.9 0 0 1 19.6 3z"/></svg>
+          </div>
+          <h3>TikTok</h3>
+          <p>@asvalpf</p>
+          <div class="tt-stats">
+            <div class="tt-stat">
+              <span class="tt-num">289</span>
+              <span class="tt-label">Followers</span>
+            </div>
+            <div class="tt-sep"></div>
+            <div class="tt-stat">
+              <span class="tt-num">570</span>
+              <span class="tt-label">J'aime</span>
+            </div>
+            <div class="tt-sep"></div>
+            <div class="tt-stat">
+              <span class="tt-num">526</span>
+              <span class="tt-label">Suivis</span>
+            </div>
+          </div>
+          <span class="sgc-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRANSITION 4 : après Contact ===== -->
+  <div class="img-transition" style="--t-img:url(Image/10.jpg)">
+    <div class="it-bg"></div>
+    <div class="it-overlay"></div>
+    <div class="it-bars"><span class="it-bar it-bar-l"></span><span class="it-bar it-bar-r"></span></div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-scan"></div>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="logo-bracket">[</span><span class="logo-as">As</span><span class="logo-val">Val</span><span class="logo-pf">PF</span><span class="logo-bracket">]</span>
+          <p>Gaming Content Creator — 2026</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#home">Accueil</a>
+          <a href="#videos">Vidéos</a>
+          <a href="#about">À propos</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="footer-credit">Made with <span>♥</span> for gaming</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <div class="vmodal" id="vmodal" role="dialog" aria-modal="true">
+    <div class="vmodal-backdrop" id="vmodalBackdrop"></div>
+    <div class="vmodal-inner">
+      <button class="vmodal-close" id="vmodalClose" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <video class="vmodal-video" id="vmodalVideo" controls playsinline>
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+  </div>
+
+  <script src="videos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
